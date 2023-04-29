@@ -40,7 +40,7 @@ public class HeartManager : MonoBehaviour
         // check currrent timer variable,if it 0 or less, heartCount - 1
         if (heartCount <= 0)
         {
-            SceneManager.LoadScene("End");
+            SceneManager.LoadScene("Fail");
         }
     } 
 }
