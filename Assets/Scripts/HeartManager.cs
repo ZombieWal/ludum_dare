@@ -10,19 +10,22 @@ public class HeartManager : MonoBehaviour
     private GameObject newHeart;
     public float heartCount = 3;
 
+    private float prevHeartCount;
+
     void Start()
     {
+        hearts = new List<GameObject>();
+        prevHeartCount = heartCount;
         generateHearts();
     }
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject obj in hearts)
+        if (heartCount != prevHeartCount)
         {
-            Destroy(obj);
+            UpdateHearts();
+            prevHeartCount = heartCount;
         }
-        hearts.Clear();
-        generateHearts();
     }
 
     void generateHearts()
@@ -33,6 +36,20 @@ public class HeartManager : MonoBehaviour
             newHeart = Instantiate(heart, gameObject.transform);
             hearts.Add(newHeart);
         }
+    }
+
+    void UpdateHearts()
+    {
+        // Remove existing hearts
+        foreach (GameObject obj in hearts)
+        {
+            Destroy(obj);
+        }
+        hearts.Clear();
+
+        // Generate new hearts
+        generateHearts();
+        checkTimer();
     }
 
     void checkTimer()
