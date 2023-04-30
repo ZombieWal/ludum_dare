@@ -18,6 +18,6 @@ public class ShowMoneyCount : MonoBehaviour
     void Update()
     {
         int money = PlayerPrefs.GetInt("moneyCount");
-        text.text = "$" + money.ToString();
+        text.text = money.ToString();
     }
 }
