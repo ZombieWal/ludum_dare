@@ -15,7 +15,7 @@ public class BarScript : MonoBehaviour
 
     void SetColor()
     {
-        if (slider.value < slider.maxValue)
+        if (slider.normalizedValue < 1)
             fill.color = inProgressColor;
         else
             fill.color = fullColor;

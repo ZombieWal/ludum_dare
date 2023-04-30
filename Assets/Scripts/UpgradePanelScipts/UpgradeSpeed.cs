@@ -11,8 +11,8 @@ public class UpgradeSpeed : MonoBehaviour
     public TMP_Text buttonText;
     public UpgradeScript upgradeScript;
 
-    readonly List<string> upgradeNames = new List<string>() {"Speed Upgrade 1", "Speed Upgrade 2", 
-        "Speed Upgrade 3", "Fully Upgraded"};
+    readonly List<string> upgradeNames = new List<string>() {"Speed +10", "Speed +15", 
+        "Speed +20", "Fully Upgraded"};
     readonly List<int> upgradeCost = new List<int>() {100, 200, 400, -1};
 
     int currentUpdateCount = 0;

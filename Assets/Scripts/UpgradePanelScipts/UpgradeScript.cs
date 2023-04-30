@@ -12,6 +12,7 @@ public class UpgradeScript : MonoBehaviour
     public BarScript progressBar;
     public Button button;
     public TMP_Text upgradeCostText;
+    public TMP_Text buyText;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class UpgradeScript : MonoBehaviour
             progressBar.Disable();
             button.interactable = false;
             upgradeCostText.text = "";
+            buyText.text = "";
             return;
         }
         int money = PlayerPrefs.GetInt("moneyCount");
