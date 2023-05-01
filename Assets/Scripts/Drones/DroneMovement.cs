@@ -27,26 +27,26 @@ public class DroneMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow) && !isMoving)
         {
             Debug.Log("Move down");
-            StartCoroutine(MoveDron(downStep));
+            StartCoroutine(MoveDrone(downStep));
         }
         if (Input.GetKey(KeyCode.UpArrow) && !isMoving)
         {
             Debug.Log("Move up");
-            StartCoroutine(MoveDron(upStep));
+            StartCoroutine(MoveDrone(upStep));
         }
         if (Input.GetKey(KeyCode.LeftArrow) && !isMoving)
         {
             Debug.Log("Move left");
-            StartCoroutine(MoveDron(leftStep));
+            StartCoroutine(MoveDrone(leftStep));
         }
         if (Input.GetKey(KeyCode.RightArrow) && !isMoving)
         {
             Debug.Log("Move right");
-            StartCoroutine(MoveDron(rightStep));
+            StartCoroutine(MoveDrone(rightStep));
         }
     }
 
-    private IEnumerator MoveDron(Vector3 direction)
+    private IEnumerator MoveDrone(Vector3 direction)
     {
         float elapsedTime = 0f;
 
