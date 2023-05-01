@@ -24,13 +24,15 @@ public class DroneMovement : MonoBehaviour
     public KeyCode droneSelect;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         drones.Add(this);
-        upStep = new Vector3(0, movementStep, 0);
-        downStep = new Vector3(0, -movementStep, 0);
+        Debug.Log("Drone added " + ", isActivated: " + isActivated);
+
         leftStep = new Vector3(-movementStep, 0, 0);
         rightStep = new Vector3(movementStep, 0, 0);
+        upStep = new Vector3(0, movementStep, 0);
+        downStep = new Vector3(0, -movementStep, 0);
     }
 
     void ManualMove() {
@@ -73,11 +75,16 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
-    void SelectAsControlled()
+    public void SelectAsActivated()
+    {
+        Debug.Log("Drone " + this.name + " is activated");
+        isActivated = true;
+    }
+
+    public void SelectAsControlled()
     {
         foreach (DroneMovement obj in drones)
             obj.isUnderControl = false;
-
         isUnderControl = true;
         // place here code for highlighting controlled drone
     }

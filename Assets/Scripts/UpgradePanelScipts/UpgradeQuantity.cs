@@ -11,9 +11,9 @@ public class UpgradeQuantity : MonoBehaviour
     public TMP_Text buttonText;
     public UpgradeScript upgradeScript;
 
-    readonly List<string> upgradeNames = new List<string>() {"+1 Robot", "+1 Robot", 
+    readonly List<string> upgradeNames = new List<string>() {"+1 Robot", "+1 Robot",
         "+1 Robot", "Fully Upgraded"};
-    readonly List<int> upgradeCost = new List<int>() {300, 300, 300, -1};
+    readonly List<int> upgradeCost = new List<int>() { 300, 300, 300, -1 };
 
     int currentUpdateCount = 0;
 
@@ -27,7 +27,7 @@ public class UpgradeQuantity : MonoBehaviour
         button.onClick.AddListener(OnButtonClick);
     }
 
-    private void OnButtonClick() 
+    private void OnButtonClick()
     {
         if (currentUpdateCount >= upgradeCost.Count)
             return;
@@ -43,7 +43,17 @@ public class UpgradeQuantity : MonoBehaviour
         buttonText.text = upgradeNames[currentUpdateCount];
         upgradeScript.upgradeCost = upgradeCost[currentUpdateCount];
 
-        // TODO: add robots to map
+        foreach (DroneMovement drone in DroneMovement.drones)
+        {
+            string droneName = "Drone" + (currentUpdateCount+1);
+            if (drone.name == droneName)
+            {
+                Debug.Log("Activate Voltrone, oh. no activate " + droneName);
+                drone.SelectAsActivated();
+                drone.SelectAsControlled();
+                break;
+            }
+        }
 
         PlayerPrefs.Save();
     }
