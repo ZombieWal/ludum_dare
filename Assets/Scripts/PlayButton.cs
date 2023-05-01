@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class ButtonScript : MonoBehaviour
+public class PlayButton : MonoBehaviour
 {
-    // Update is called once per frame
     public void PlayGame()
     {
+        Debug.Log("Button was clicked");
         SceneManager.LoadScene("Game");
     }
 }
