@@ -16,13 +16,14 @@ public class DroneMovement : MonoBehaviour
     private Vector3 upStep, downStep, leftStep, rightStep;
     public LayerMask noMovementLayer;
     // do we control the drome movement manually or not
-    private bool isUnderControl = false;
+    private bool isUnderControl = true;
     // all drones for choosing only one for manual movement
     public static List<DroneMovement> drones = new List<DroneMovement>();
     // drone is ready to work
     public bool isActivated = false;
     public KeyCode droneSelect;
     private DeliveryOrder currentOrder = null;
+    public GameObject targetMarker;
 
     // Start is called before the first frame update
     void Awake()
@@ -136,12 +137,19 @@ public class DroneMovement : MonoBehaviour
             {
                 OrdersManager.DeliverOrder(currentOrder);
                 currentOrder = null;
+                targetMarker.transform.position = new Vector3(-100, -100, 2);
             }
         }
         else
         {
-            Debug.Log("GetOrder from " + collision.name);
             currentOrder = OrdersManager.GetOrder(collision.name);
+            if (currentOrder is not null)
+            {
+                Debug.Log(targetMarker + " " + currentOrder.destination);
+                Vector3 markerNewPosition = currentOrder.destination;
+                markerNewPosition.z = -2;
+                targetMarker.transform.position = markerNewPosition;
+            }
         }
     }
 }
