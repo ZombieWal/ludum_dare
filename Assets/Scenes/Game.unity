@@ -785,6 +785,7 @@ MonoBehaviour:
     m_Bits: 256
   isActivated: 0
   droneSelect: 51
+  index: 2
 --- !u!50 &76593606
 Rigidbody2D:
   serializedVersion: 4
@@ -2623,6 +2624,7 @@ MonoBehaviour:
     m_Bits: 256
   isActivated: 0
   droneSelect: 52
+  index: 3
 --- !u!50 &895723353
 Rigidbody2D:
   serializedVersion: 4
@@ -13029,6 +13031,7 @@ MonoBehaviour:
     m_Bits: 320
   isActivated: 1
   droneSelect: 49
+  index: 0
 --- !u!50 &1320034942
 Rigidbody2D:
   serializedVersion: 4
@@ -13671,6 +13674,7 @@ MonoBehaviour:
     m_Bits: 256
   isActivated: 0
   droneSelect: 50
+  index: 1
 --- !u!50 &1557194835
 Rigidbody2D:
   serializedVersion: 4
