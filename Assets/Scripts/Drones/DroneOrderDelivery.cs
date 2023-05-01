@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DroneOrderDelivery : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class DroneOrderDelivery : MonoBehaviour
     public void ReceiveOrder(int orderCompletionPayment, int orderFailedFine)
     {
         // TODO: activate destination, pay only if reached 
-
         int money = PlayerPrefs.GetInt("moneyCount");
         money += orderCompletionPayment;
         PlayerPrefs.SetInt("moneyCount", money);

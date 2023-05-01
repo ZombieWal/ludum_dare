@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DroneMovement : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class DroneMovement : MonoBehaviour
     public KeyCode droneSelect;
     private DeliveryOrder currentOrder = null;
     public GameObject targetMarker;
+    public TMP_Text status;
+    public TMP_Text quest;
 
     // Start is called before the first frame update
     void Awake()
@@ -137,6 +140,8 @@ public class DroneMovement : MonoBehaviour
             {
                 OrdersManager.DeliverOrder(currentOrder);
                 currentOrder = null;
+                status.text = "No task";
+                quest.text = "Find shop! Now!";
                 targetMarker.transform.position = new Vector3(-100, -100, 2);
             }
         }
@@ -146,6 +151,8 @@ public class DroneMovement : MonoBehaviour
             if (currentOrder is not null)
             {
                 Debug.Log(targetMarker + " " + currentOrder.destination);
+                status.text = "Delivery";
+                quest.text = "Deliver order to triangle! Now!";
                 Vector3 markerNewPosition = currentOrder.destination;
                 markerNewPosition.z = -2;
                 targetMarker.transform.position = markerNewPosition;

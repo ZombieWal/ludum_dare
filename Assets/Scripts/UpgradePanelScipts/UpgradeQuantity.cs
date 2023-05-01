@@ -13,8 +13,8 @@ public class UpgradeQuantity : MonoBehaviour
     public TMP_Text buttonText;
     public UpgradeScript upgradeScript;
 
-    readonly List<string> upgradeNames = new List<string>() {"Automatization"};
-    readonly List<int> upgradeCost = new List<int>() { 30000 };
+    readonly List<string> upgradeNames = new List<string>() {"Automation"};
+    readonly List<int> upgradeCost = new List<int>() { 2300 };
 
     int currentUpdateCount = 0;
 
