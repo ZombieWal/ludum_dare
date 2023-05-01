@@ -13,7 +13,7 @@ public class UpgradeCity : MonoBehaviour
 
     readonly List<string> upgradeNames = new List<string>() {"City I", "City II", 
         "City III", "Fully Upgraded"};
-    readonly List<int> upgradeCost = new List<int>() {200, 500, 1000, -1};
+    readonly List<int> upgradeCost = new List<int>() {100, 500, 1000, -1};
 
     int currentUpdateCount = 0;
 
@@ -38,13 +38,14 @@ public class UpgradeCity : MonoBehaviour
 
         money -= upgradeScript.upgradeCost;
         PlayerPrefs.SetInt("moneyCount", money);
+        PlayerPrefs.Save();
 
         currentUpdateCount += 1;
         buttonText.text = upgradeNames[currentUpdateCount];
         upgradeScript.upgradeCost = upgradeCost[currentUpdateCount];
+        OrdersManager.UpgradeCity(currentUpdateCount);
 
-        // TODO: change map
 
-        PlayerPrefs.Save();
+
     }
 }
