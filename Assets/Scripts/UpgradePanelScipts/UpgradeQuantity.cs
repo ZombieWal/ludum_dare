@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using UnityEngine.SceneManagement;
+
 public class UpgradeQuantity : MonoBehaviour
 {
     public Button button;
@@ -46,6 +48,10 @@ public class UpgradeQuantity : MonoBehaviour
         foreach (DroneMovement drone in DroneMovement.drones)
         {
             string droneName = "Drone" + (currentUpdateCount+1);
+            if (droneName == "Drone4")
+            {
+                SceneManager.LoadScene("Win");
+            }
             if (drone.name == droneName)
             {
                 Debug.Log("Activate Voltrone, oh. no activate " + droneName);
