@@ -16,10 +16,9 @@ public class TestingScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            int money = PlayerPrefs.GetInt("moneyCount");
-            money += 20;
-            PlayerPrefs.SetInt("moneyCount", money);
-            PlayerPrefs.Save();
+            // HeartManager.heartCount = HeartManager.heartCount - 1;
+            // PlayerPrefs.SetInt("moneyCount", money);
+            // PlayerPrefs.Save();
         }
 
     }
