@@ -4,46 +4,79 @@ using UnityEngine;
 
 public class DroneMovement : MonoBehaviour
 {
+    // where the dron want to move
     private Vector3 targetPosition;
+    // save the prev positioning of the drone
     private Vector3 originalPosition;
+    // is the dron moving to the next tile
     private bool isMoving = false;
+    // how much time the drome moves to the next tile
     public float timeToMove = 1f;
-    public float movementStep = 0.001f;
+    private float movementStep = 0.16f;
     private Vector3 upStep, downStep, leftStep, rightStep;
     public LayerMask noMovementLayer;
+    // do we control the drome movement manually or not
+    private bool isUnderControl = false;
+    // all drones for choosing only one for manual movement
+    public static List<DroneMovement> drones = new List<DroneMovement>();
+    // do we control the drome movement manually or not
+    public bool isActiveted = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        drones.Add(this);
         upStep = new Vector3(0, movementStep, 0);
         downStep = new Vector3(0, -movementStep, 0);
         leftStep = new Vector3(-movementStep, 0, 0);
         rightStep = new Vector3(movementStep, 0, 0);
     }
 
+    void ManualMove() {
+        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && !isMoving)
+        {
+            Debug.Log("Move down " + downStep);
+            StartCoroutine(MoveDrone(downStep));
+        }
+        if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !isMoving)
+        {
+            Debug.Log("Move up " + upStep);
+            StartCoroutine(MoveDrone(upStep));
+        }
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && !isMoving)
+        {
+            Debug.Log("Move left " + leftStep);
+            StartCoroutine(MoveDrone(leftStep));
+        }
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && !isMoving)
+        {
+            Debug.Log("Move right " + rightStep);
+            StartCoroutine(MoveDrone(rightStep));
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.DownArrow) && !isMoving)
+        if (isUnderControl && isActiveted)
         {
-            Debug.Log("Move down");
-            StartCoroutine(MoveDrone(downStep));
+            ManualMove();
         }
-        if (Input.GetKey(KeyCode.UpArrow) && !isMoving)
-        {
-            Debug.Log("Move up");
-            StartCoroutine(MoveDrone(upStep));
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) && !isMoving)
-        {
-            Debug.Log("Move left");
-            StartCoroutine(MoveDrone(leftStep));
-        }
-        if (Input.GetKey(KeyCode.RightArrow) && !isMoving)
-        {
-            Debug.Log("Move right");
-            StartCoroutine(MoveDrone(rightStep));
-        }
+    }
+
+    void SelectAsContrilled()
+    {
+        foreach (DroneMovement obj in drones)
+            obj.isUnderControl = false;
+
+        isUnderControl = true;
+        // place here code for highlighting controlled drone
+    }
+
+    private void OnMouseDown()
+    {
+        if (isActiveted)
+            SelectAsContrilled();
     }
 
     private IEnumerator MoveDrone(Vector3 direction)
@@ -56,6 +89,7 @@ public class DroneMovement : MonoBehaviour
         if (!Physics2D.OverlapCircle(targetPosition, 0.02f, noMovementLayer))
         {
             isMoving = true;
+            Debug.Log("MtargetPosition" + targetPosition);
 
             while (elapsedTime < timeToMove)
             {
