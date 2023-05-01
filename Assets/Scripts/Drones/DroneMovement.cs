@@ -19,17 +19,20 @@ public class DroneMovement : MonoBehaviour
     private bool isUnderControl = false;
     // all drones for choosing only one for manual movement
     public static List<DroneMovement> drones = new List<DroneMovement>();
-    // do we control the drome movement manually or not
-    public bool isActiveted = false;
+    // drone is ready to work
+    public bool isActivated = false;
+    public KeyCode droneSelect;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         drones.Add(this);
-        upStep = new Vector3(0, movementStep, 0);
-        downStep = new Vector3(0, -movementStep, 0);
+        Debug.Log("Drone added " + ", isActivated: " + isActivated);
+
         leftStep = new Vector3(-movementStep, 0, 0);
         rightStep = new Vector3(movementStep, 0, 0);
+        upStep = new Vector3(0, movementStep, 0);
+        downStep = new Vector3(0, -movementStep, 0);
     }
 
     void ManualMove() {
@@ -58,25 +61,38 @@ public class DroneMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isUnderControl && isActiveted)
+        if (isActivated)
         {
-            ManualMove();
+            if (Input.GetKeyDown(droneSelect))
+            {
+                SelectAsControlled();
+            }
+
+            if (isUnderControl)
+            {
+                ManualMove();
+            }
         }
     }
 
-    void SelectAsContrilled()
+    public void SelectAsActivated()
+    {
+        Debug.Log("Drone " + this.name + " is activated");
+        isActivated = true;
+    }
+
+    public void SelectAsControlled()
     {
         foreach (DroneMovement obj in drones)
             obj.isUnderControl = false;
-
         isUnderControl = true;
         // place here code for highlighting controlled drone
     }
 
     private void OnMouseDown()
     {
-        if (isActiveted)
-            SelectAsContrilled();
+        if (isActivated)
+            SelectAsControlled();
     }
 
     private IEnumerator MoveDrone(Vector3 direction)
