@@ -11,7 +11,7 @@ public class DroneMovement : MonoBehaviour
     // is the dron moving to the next tile
     private bool isMoving = false;
     // how much time the drome moves to the next tile
-    public float timeToMove = 1f;
+    public float speed = 10f;
     private float movementStep = 0.16f;
     private Vector3 upStep, downStep, leftStep, rightStep;
     public LayerMask noMovementLayer;
@@ -105,7 +105,9 @@ public class DroneMovement : MonoBehaviour
         if (!Physics2D.OverlapCircle(targetPosition, 0.02f, noMovementLayer))
         {
             isMoving = true;
-            Debug.Log("MtargetPosition" + targetPosition);
+
+
+            float timeToMove = 2 / speed;
 
             while (elapsedTime < timeToMove)
             {
