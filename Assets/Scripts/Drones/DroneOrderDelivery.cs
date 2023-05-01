@@ -21,6 +21,7 @@ public class DroneOrderDelivery : MonoBehaviour
 
     }
 
+
     public void ReceiveOrder(int orderCompletionPayment, int orderFailedFine)
     {
         // TODO: activate destination, pay only if reached 

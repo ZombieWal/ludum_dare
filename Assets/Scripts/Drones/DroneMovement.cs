@@ -22,6 +22,7 @@ public class DroneMovement : MonoBehaviour
     // drone is ready to work
     public bool isActivated = false;
     public KeyCode droneSelect;
+    private DeliveryOrder currentOrder = null;
 
     // Start is called before the first frame update
     void Awake()
@@ -124,6 +125,23 @@ public class DroneMovement : MonoBehaviour
         else
         {
             Debug.Log("There is no way");
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger " + collision);
+        if (currentOrder is not null)
+        {
+            if (collision.name == currentOrder.deliverPlace)
+            {
+                OrdersManager.DeliverOrder(currentOrder);
+                currentOrder = null;
+            }
+        }
+        else
+        {
+            Debug.Log("GetOrder from " + collision.name);
+            currentOrder = OrdersManager.GetOrder(collision.name);
         }
     }
 }
