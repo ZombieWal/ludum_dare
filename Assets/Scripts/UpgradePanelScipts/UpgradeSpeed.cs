@@ -11,8 +11,8 @@ public class UpgradeSpeed : MonoBehaviour
     public TMP_Text buttonText;
     public UpgradeScript upgradeScript;
 
-    readonly List<string> upgradeNames = new List<string>() {"Speed +10", "Speed +20", 
-        "Speed +30", "Fully Upgraded"};
+    readonly List<string> upgradeNames = new List<string>() {"Speed +10", "Speed +15", 
+        "Speed +20", "Fully Upgraded"};
     readonly List<int> upgradeCost = new List<int>() {100, 200, 400, -1};
 
     int currentUpdateCount = 0;
@@ -43,6 +43,6 @@ public class UpgradeSpeed : MonoBehaviour
         upgradeScript.upgradeCost = upgradeCost[currentUpdateCount];
 
         foreach (DroneMovement drone in DroneMovement.drones)
-            drone.speed += 10;
+            drone.speed += 5;
     }
 }
