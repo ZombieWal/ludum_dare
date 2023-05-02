@@ -13,7 +13,7 @@ public class TimerScript : MonoBehaviour
 
     void Start()
     {
-        timerIsRunning = true;    
+        timerIsRunning = true;
     }
 
     void Update()
@@ -29,14 +29,16 @@ public class TimerScript : MonoBehaviour
             else if (drone.isActivated && timeRemaining <= 0)
             {
                 Debug.Log("Time has run out!");
+
                 timeRemaining = 0;
                 timerIsRunning = false;
+
                 SceneManager.LoadScene("Fail");
             }
         }
     }
 
-    void DisplayTime(float timeToDisplay)
+        void DisplayTime(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
