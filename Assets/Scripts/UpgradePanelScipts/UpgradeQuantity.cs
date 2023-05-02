@@ -41,6 +41,7 @@ public class UpgradeQuantity : MonoBehaviour
         PlayerPrefs.SetInt("moneyCount", money);
         PlayerPrefs.Save();
         currentUpdateCount += 1;
+        QuestManager.isFirstLoad = true;
         SceneManager.LoadScene("Win");
     }
 }
