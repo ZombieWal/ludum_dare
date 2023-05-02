@@ -6,7 +6,7 @@ using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
-    public float timeRemaining = 10;
+    public float timeRemaining = 450;
     public bool timerIsRunning = false;
     public DroneMovement drone;
     public TMP_Text timeText;
